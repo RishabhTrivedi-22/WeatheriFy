@@ -20,13 +20,14 @@ body {
 .container {
   position: relative;
   width: 450px;
-  height: 600px;
+  height: 100px;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(30px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 20px;
   color: #fff;
+  transition: height 0.6s ease;
 }
 
 .search-box {
@@ -71,6 +72,31 @@ body {
   color: #fff;
   font-size: 28px;
   padding: 0 42px 0 5px;
+  cursor: pointer;
+}
+
+.weather-box,
+.weather-details,
+.not-found {
+  visibility: hidden; 
+  overflow: hidden;
+}
+
+.active {
+  visibility: visible;
+}
+
+
+.weather-box .box,
+.not-found .box {
+  transform: translateY(-100%);
+}
+.weather-box.active .box,
+.not-found.active .box {
+  transform: translateY(0%);
+  transition: transform 1s ease;
+  transition-delay: 0.6s;
+
 }
 
 .weather-box {
@@ -120,7 +146,16 @@ body {
   display: flex;
   align-items: center;
   width: 50%;
+  transform: translateY(-100%);
 }
+
+.weather-details.active .humidity,
+.weather-details.active .wind {
+  transform: translateY(0%);
+  transition: transform 1s ease;
+  transition-delay: 1.2s;
+}
+
 .weather-details i {
   font-size: 55px;
   margin-right: 10px;
@@ -133,4 +168,29 @@ body {
 .weather-details p {
   font-size: 18px;
   font-weight: 500;
+}
+
+.not-found,
+.start {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 90px;
+  text-align: center;
+}
+
+.not-found img {
+  width: 60%;
+}
+
+.start img {
+  width: 70%;
+}
+
+.not-found p,
+.start p {
+  font-size: 25px;
+  font-weight: 500;
+  margin-top: 15px;
 }
